@@ -1,0 +1,33 @@
+.App {
+	background-color: #FFFFFF;
+	width: 100vw;
+	height: 100vh;
+	font-family: var(--font-app);
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+}
+
+.mainContainer {
+	width: 695px;
+	display: flex;
+}
+
+.container {
+	align-items: center;
+	margin: 20% auto;
+	height: 448px;
+	width: 243px;
+}
+
+.disable {
+	opacity: 50%;
+}
+
+.field {
+
+	align-items: center;
+	margin: 20% auto;
+	height: 448px;
+	width: 243px;
+}

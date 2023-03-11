@@ -1,0 +1,20 @@
+.Operations {
+	width: 240px;
+	border-radius: 4px;
+	margin-top: 12px;
+	display: flex;
+	justify-content: space-between;
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.06), 0 4px 6px rgba(0, 0, 0, 0.1);
+	padding: 4px;
+}
+
+.operand {
+	background-color: var(--color-white);
+	border: 1px solid var(--buttons-border-color);
+	border-radius: 6px;
+	width: 52px;
+	height: 48px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}

@@ -1,0 +1,21 @@
+.FieldArea {
+	border: 2px dashed #C4C4C4;
+	border-radius: 6px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 448px;
+	width: 243px;
+}
+
+.placeholder {
+	text-align: center;
+}
+
+.header {
+	color: var(--color-primary);
+}
+
+.text {
+	color: var(--text-color-secondary);
+}

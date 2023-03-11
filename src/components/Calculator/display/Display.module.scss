@@ -1,0 +1,23 @@
+.Display {
+	padding: 4px;
+	width: 240px;
+	height: 60px;
+	border-radius: 6px;
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.06), 0 4px 6px rgba(0, 0, 0, 0.1);
+	display: flex;
+	flex-direction: column;
+}
+
+.displayText {
+	background-color: var(--color-secondary);
+	color: black;
+	font-weight: 800;
+	font-size: 36px;
+	line-height: 44px;
+	display: block;
+	justify-content: flex-end;
+	align-items: center;
+	text-align: right;
+	padding: 4px 8px;
+	border-radius: 6px;
+}
