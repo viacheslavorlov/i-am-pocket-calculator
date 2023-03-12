@@ -1,0 +1,37 @@
+.UpperPanel {
+	width: 243px;
+	height: 38px;
+	background-color: #F3F4F6;
+	display: flex;
+	justify-content: space-evenly;
+	border-radius: 6px;
+}
+.btn {
+	cursor: pointer;
+	display: flex;
+	align-items: center;
+	padding: 8px 12px;
+	height: 36px;
+	font-size: 14px;
+	background: var(--color-white);
+	border: 1px solid #E2E3E5;
+	border-radius: 5px;
+}
+
+.inactive {
+	border: none;
+	background: none;
+}
+.btnRuntime {
+	width: 108px;
+}
+.btnConstructor {
+	width: 133px;
+}
+
+.eye {
+	margin-right: 8px;
+}
+.selector {
+
+}

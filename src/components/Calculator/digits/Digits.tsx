@@ -1,7 +1,9 @@
 import cls from './Digits.module.scss';
 import {memo, useCallback} from "react";
-import {useAppDispatch} from "../../../store/typedHooks/typedHooks";
+import {useAppDispatch, useAppSelector} from "../../../store/typedHooks/typedHooks";
 import {calculatorActions} from "../../../store/calculatorSlice/calculatorSlice";
+import {getDotDisabled, getIsFirstValue} from "../../../store/calculatorSlice/selectors/selectors";
+import classNames from "classnames";
 
 export const AllDigits: string[]= [
     '1',
@@ -17,36 +19,36 @@ export const AllDigits: string[]= [
     ','
 ]
 
-interface DigitsProps {
-    isFirst: boolean;
-}
-
-
-export const Digits = memo(({isFirst}: DigitsProps) => {
+export const Digits = memo(() => {
     const dispatch = useAppDispatch();
+    const isFirst = useAppSelector(getIsFirstValue);
+    const dotDisabled = useAppSelector(getDotDisabled);
     const onClickHandle = (num: string) => {
+        let result = num;
+        if (num === ',') {
+            result = '.'
+        }
         if (isFirst) {
-            dispatch(calculatorActions.setFirstValue(num));
+            dispatch(calculatorActions.setFirstValue(result));
         } else {
-            dispatch(calculatorActions.setSecondValue(num))
+            dispatch(calculatorActions.setSecondValue(result))
         }
     }
 
     return (
-        <div className={cls.Digits}>
+        <div className={cls.Digits} draggable={true} >
             {AllDigits.map(digit => {
                 return (
                     <button
                         onClick={() => onClickHandle(digit)}
                         key={digit}
-                        className={
-                        digit === '0' ? cls.digit + ' ' + cls.zero : cls.digit
+                        disabled={digit === ',' && dotDisabled}
+                        className={classNames(cls.digit, {[cls.zero]: digit === '0'})
                     }>
                         {digit}
                     </button>
                 )
             })}
-
         </div>
     );
 });

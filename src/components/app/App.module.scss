@@ -4,6 +4,7 @@
 	height: 100vh;
 	font-family: var(--font-app);
 	display: flex;
+	flex-wrap: wrap;
 	justify-content: space-around;
 	align-items: center;
 }
@@ -16,8 +17,9 @@
 .container {
 	align-items: center;
 	margin: 20% auto;
-	height: 448px;
+	height: 516px;
 	width: 243px;
+	padding-top: 68px;
 }
 
 .disable {
@@ -28,6 +30,14 @@
 
 	align-items: center;
 	margin: 20% auto;
-	height: 448px;
+	height: 516px;
 	width: 243px;
+}
+
+.upperPanel {
+	display: flex;
+	justify-content: center;
+	margin-bottom: 30px;
+	flex-basis: 100%;
+
 }

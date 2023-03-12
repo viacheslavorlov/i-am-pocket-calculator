@@ -1,16 +1,17 @@
 import {createSlice} from "@reduxjs/toolkit";
 
-interface CalculatorShema {
+interface CalculatorSchema {
     isFirstValue: boolean;
     isOperand: boolean;
-    firstValue: string | number | null;
-    secondValue: string | number | null;
+    firstValue: number | string | null;
+    secondValue: number | string | null;
     operand: string | null;
     result: number | string | null;
     displayed: number | string;
+    dotDisabled: boolean;
 }
 
-const initialState: CalculatorShema = {
+const initialState: CalculatorSchema = {
     firstValue: null,
     secondValue: null,
     operand: null,
@@ -18,31 +19,41 @@ const initialState: CalculatorShema = {
     isFirstValue: true,
     isOperand: false,
     displayed: 0,
+    dotDisabled: false
 }
-
 
 const calculatorSlice = createSlice({
     name: 'calculator',
     initialState,
     reducers: {
         setFirstValue: (state, action) => {
-            if (state.isFirstValue) {
-                if (state.firstValue === null) {
+
+                if (state.firstValue === null && action.payload === '.') {
+                    state.dotDisabled = true;
+                    state.firstValue = '0.';
+                } else if (state.firstValue === null) {
                     state.firstValue = action.payload;
+                    if (action.payload ==='.') {
+                        state.dotDisabled = true;
+                    }
                 } else {
-                    // @ts-ignore
-                    state.firstValue += Number(action.payload);
+                    state.firstValue = state.firstValue + action.payload;
+                    if (action.payload ==='.') {
+                        state.dotDisabled = true;
+                    }
                 }
                 state.displayed = state.firstValue ? state.firstValue : 0;
-            }
+
         },
         setSecondValue: (state, action) => {
             if (state.operand) {
-                if (state.secondValue === null) {
+                if (!state.secondValue) {
                     state.secondValue = action.payload;
                 } else {
-                    // @ts-ignore
-                    state.secondValue += Number(action.payload);
+                    state.secondValue = state.secondValue + action.payload;
+                    if (action.payload ==='.') {
+                        state.dotDisabled = true;
+                    }
                 }
                 state.displayed = state.secondValue!;
             } else {
@@ -53,8 +64,9 @@ const calculatorSlice = createSlice({
         setOperand: (state, action) => {
             state.isFirstValue = false;
             state.operand = action.payload;
+            state.dotDisabled = false;
             if (state.result) {
-                state.firstValue = state.result;
+                state.firstValue = state.result.toString();
                 state.secondValue = null;
             }
 
@@ -63,31 +75,32 @@ const calculatorSlice = createSlice({
             let result: number | string | null;
             const first = Number(state.firstValue);
             const second = Number(state.secondValue);
-            switch (state.operand) {
-                case '+':
-                    result = first + second;
-                    break;
-                case '-':
-                    result = first - second;
-                    break;
-                case 'x':
-                    result = first * second;
-                    break;
-                case '/':
-                    if (second === 0) {
-                        result = 'Не определено';
-                    } else {
-                        result = first / second;
-                    }
-                    break;
-                default:
-                    result = 0;
-                    break;
+            if (Number.isFinite(first) && Number.isFinite(second) && first !==null && second !== null) {
+                switch (state.operand) {
+                    case '+':
+                        result = first + second;
+                        break;
+                    case '-':
+                        result = first - second;
+                        break;
+                    case 'x':
+                        result = first * second;
+                        break;
+                    case '/':
+                            result = first / second;
+                        break;
+                    default:
+                        result = 0;
+                        break;
+                }
+                state.result = result;
+                state.firstValue = result.toString();
+                state.displayed = result;
+                state.dotDisabled = false;
             }
-
-            state.result = result;
-            state.firstValue = result;
-            state.displayed = result;
+        },
+        setDotDisabled: (state, action) => {
+            state.dotDisabled = action.payload;
         }
     }
 });

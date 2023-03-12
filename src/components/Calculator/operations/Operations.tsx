@@ -14,7 +14,7 @@ export const Operations = memo(() => {
     }, [dispatch]);
 
     return (
-        <div className={cls.Operations}>
+        <div className={cls.Operations} draggable={true}>
             {optionList.map(operation => {
                 return (
                     <button

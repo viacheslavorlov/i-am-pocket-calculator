@@ -14,10 +14,19 @@
 	font-weight: 800;
 	font-size: 36px;
 	line-height: 44px;
-	display: block;
+	display: flex;
 	justify-content: flex-end;
-	align-items: center;
+	align-items: flex-end;
 	text-align: right;
 	padding: 4px 8px;
 	border-radius: 6px;
+}
+
+.textMedium {
+	font-size: 24px;
+
+}
+
+.textSmall {
+	font-size: 19px;
 }

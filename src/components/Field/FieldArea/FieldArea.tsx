@@ -1,13 +1,14 @@
 import cls from './FieldArea.module.scss';
 import icon from '../../../assets/addNewItem.svg';
 import {memo} from "react";
+import classNames from "classnames";
 export const FieldArea = memo(() => {
 
     return (
         <div
             onDragOver={event => console.log('dragged')}
             onDrop={e => e.dataTransfer}
-            className={cls.FieldArea}>
+            className={classNames(cls.FieldArea, 'field')}>
             <div className={cls.placeholder}>
                 <img src={icon} alt="icon"/>
                 <div className={cls.header}>Перетащите сюда</div>
